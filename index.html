@@ -1,155 +1,155 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
 
-    <title>Split JS</title>
-</head>
-<style>
-    body {
-        background-color: #d6f54f;
-        color: green;
-    }
+        <title>Split JS</title>
+    </head>
+    <style>
+        :root{
+            --back1: #d6f54f;
+            --back2: green;
+        }
+        body {
+            background-color: var(--back1);
+            color: var(--back2);
+        }
 
-    textarea {
-        width: 100%;
-    }
+        textarea {
+            width: 100%;
+        }
 
-    .main {
-        background-color: #f7f7f7;
-        margin-top: 20px;
-        padding: 5px;
-    }
+        .main {
+            background-color: #f7f7f7;
+            margin-top: 20px;
+            padding: 5px;
+        }
 
-    .btn {
-        border: 2px solid green;
-        width: 120px;
-        font-weight: bold;
-        color: green;
-        background-color: #d6f54f;
-    }
+        .btn {
+            border: 2px solid var(--back2);
+            width: 120px;
+            font-weight: bold;
+            color: var(--back2);
+            background-color: var(--back1);
+        }
+        header{
+            background-color: var(--back2);
+            color: var(--back1);
+            padding-bottom: 3px;
+            display: flex;
+            justify-content:space-between;
+        }
+        #master{
+            margin-left: 10%;
+        }
+        #show{
+            background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6));
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            color: black;
+        }
+        #copiar{
+            background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6));
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            color: black;
+        }
+        .divtop{
+            padding: 0 40px;
+        }
+    </style>
 
-    header {
-        background-color: green;
-        color: #d6f54f;
-        padding-bottom: 3px;
-    }
+    <body onload="Relogio()">
+        <header>
+           <div class="divtop"><h1> Ordenação de seriais </h1></div><div class="divtop"><h1 name='relogio' id='relogio'></h1></div> 
+        </header>
+        <div class="container main">
+            <p>Para ordenar é necessario haver um tipo de separador entre os seriais,
+                como nas opções a direita.
+            </p>
+            <p>
+                    Insira os seriais, escolha o separador entre eles e 
+                clique em separar.
+            </p>
+            <p>
+                Quando for copiar para o Excel, formatar a coluna como texto antes.
+            </p>
+            
+            <hr>
+            <h1 id="titulo"></h1>
 
-    #master {
-        margin-left: 10%;
-    }
+            <div class="row">
+                <div class="col-md-9">
+                    <textarea name="separa" id="separa" cols="90" rows="10" placeholder="Suporta no máximo 300 ítens"></textarea>
+                </div>
+                <div class="col-md-3">
 
-    #show {
-        background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6));
-        width: 300px;
-        margin: 0 auto;
-        text-align: center;
-        color: black;
-    }
-
-    #copiar {
-        background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6));
-        width: 300px;
-        margin: 0 auto;
-        text-align: center;
-        color: black;
-    }
-</style>
-
-<body>
-    <header>
-        <h1 id="master">Ordenação de seriais</h1>
-    </header>
-    <div class="container main">
-        <p>Para ordenar é necessario haver um tipo de separador entre os números,
-            como nas opções a direita.
-        </p>
-        <p>
-            Insira os seriais, escolha o separador entre eles e
-            clique em separar.
-        </p>
-        <hr>
-        <h1 id="titulo"></h1>
-
-        <div class="row">
-            <div class="col-md-9">
-                <textarea name="separa" id="separa" cols="90" rows="10"></textarea>
+                    <p>
+                        <label for="pvirgula">Ponto e vírgula</label>
+                        <input type="radio" name="separ" id="pvirgula" checked>
+                    </p>
+                    <p>
+                        <label for="virgula">Vírgula</label>
+                        <input type="radio" name="separ" id="virgula">
+                    </p>
+                    <p>
+                        <label for="traco">Traço</label>
+                        <input type="radio" name="separ" id="traco">
+                    </p>
+                    <p>
+                        <label for="ponto">Ponto</label>
+                        <input type="radio" name="separ" id="ponto">
+                    </p>
+                    <p>
+                        <label for="espaco">Espaço</label>
+                        <input type="radio" name="separ" id="espaco">
+                    </p>
+                    <hr>
+                    <button class="btn" onclick="separar()">Separar</button>
+                    <button class="btn" onclick="limpar()">Limpar</button>
+                    
+                </div>
             </div>
-            <div class="col-md-3">
 
-                <p>
-                    <label for="pvirgula">Ponto e vírgula</label>
-                    <input type="radio" name="separ" id="pvirgula" checked>
-                </p>
-                <p>
-                    <label for="virgula">Vírgula</label>
-                    <input type="radio" name="separ" id="virgula">
-                </p>
-                <p>
-                    <label for="traco">Traço</label>
-                    <input type="radio" name="separ" id="traco">
-                </p>
-                <p>
-                    <label for="ponto">Ponto</label>
-                    <input type="radio" name="separ" id="ponto">
-                </p>
-                <p>
-                    <label for="espaco">Espaço</label>
-                    <input type="radio" name="separ" id="espaco">
-                </p>
-                <hr>
-                <button class="btn" onclick="separar()">Separar</button>
-                <button class="btn" onclick="limpar()">Limpar</button>
+            <hr>
+            <div id="copiar">
 
             </div>
-        </div>
+            <div class="show">
 
-        <hr>
-        <div id="copiar">
-
+            </div>
+            <div id="show">
+           
+            </div>
+           
+<!-- <a href="asd.html">asdfg</a> -->
         </div>
-        <div id="show">
-
-        </div>
-        <a href="asd.html">asdfg</a>
-    </div>
-    <textarea class="text">Texto para copiar</textarea>
-    <button id="copy">Copiar</button>
 
     <script>
-        let btn = document.querySelector('#copy');
-        btn.addEventListener('click', function (e) {
-            let textArea = document.querySelector('.text');
-            textArea.select();
-            document.execCommand('copy');
 
-        });
+            function separar() {
+                // var copiar = document.getElementById("copiar");
+                var mostrar = document.getElementById("show");
+                var separando = document.getElementById("separa");
 
+                // para selecionar o input rádio deve se selecionar por nome, não pela classe ou id.
+                var radio = document.getElementsByName("separ");
 
-        ////////////////////////////////////////////////////////
-
-        function separar() {
-            var copiar = document.getElementById("copiar");
-            var mostrar = document.getElementById("show");
-            var separando = document.getElementById("separa");
-            var radio = document.getElementsByName("separ");
-
-            let textArea = document.querySelector('.text');
-
-
-            if (separando.value == "") {
-                alert("Insira valores com separadores")
-            } else {
-                if (radio[0].checked) {
+                if(separando.value == ""){
+                    alert("Insira valores com separadores")
+                }else{
+                    if (radio[0].checked) {
                     separate = ";"
                 } else if (radio[1].checked) {
                     separate = ","
@@ -162,46 +162,64 @@
                 }
 
                 var arr = separando.value.split(separate);
-                var tamanho = arr.length - 1
+                var tamanho = arr.length -1
+                // var tamanho = arr.length - 1
 
-                if (tamanho > 500) {
-                    alert("Não insira mais que 500 seriais")
+                if(tamanho > 300 ){
+                    alert("Não insira mais que 300 seriais")
                     limpar();
-                } else if (tamanho == 0) {
+                }else if(tamanho == 0){
                     alert("O valor não retornou resultados  Verifique se escolheu o separador correto")
                     //limpar();
-                } else {
+                }else{
 
-                    copiar.innerHTML =
-                        `
-                    <button class="btn" onclick="copiarTexto()">Copiar</button>
-                    `
+                    // copiar.innerHTML = 
+                    // `
+                    // <button class="btn" onclick="copiarTexto()">Copiar</button>
+                    // `
 
                     for (let i = 0; i < arr.length; i++) {
-                        mostrar.innerHTML +=
-                            `            
+                    mostrar.innerHTML +=
+                        `            
             ${arr[i]}<br>
             
                 `
-                let textArea = document.querySelector('.text').value = arr[i] + "<br>";
-                    }
+                }
 
-                    alert(tamanho + " ítens encontrados");
+                alert(tamanho + " ítens encontrados");
+                // alert((tamanho + 1) + " ítens encontrados");
 
                 }
+                }
+                            
+            }
+            function limpar() {
+                var mostrar = document.getElementById("show");
+                var separando = document.getElementById("separa").value = "";
+                mostrar.innerHTML = ``
             }
 
-        }
-        function limpar() {
-            var mostrar = document.getElementById("show");
-            var separando = document.getElementById("separa").value = "";
-            mostrar.innerHTML = ``
-        }
 
+            function Relogio(){
 
+momentoAtual = new Date()
 
-    </script>
+hora = momentoAtual.getHours()
 
-</body>
+minuto = momentoAtual.getMinutes()
 
+segundo = momentoAtual.getSeconds()
+
+hr= hora + " : " + minuto + " : " + segundo
+
+document.getElementById("relogio").innerHTML=`Hora atual `+hr;
+
+setTimeout("Relogio()",1000)
+
+}
+
+           
+        </script>
+
+    </body>
 </html>
