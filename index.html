@@ -70,9 +70,9 @@
         }
     </style>
 
-    <body onload="Relogio()">
+    <body>
         <header>
-           <div class="divtop"><h1> Ordenação de seriais </h1></div><div class="divtop"><h1 name='relogio' id='relogio'></h1></div> 
+           <div class="divtop"><h1> Ordenação de seriais </h1></div> 
         </header>
         <div class="container main">
             <p>Para ordenar é necessario haver um tipo de separador entre os seriais,
@@ -84,7 +84,7 @@
             </p>
             <p>
                 Quando for copiar para o Excel, formatar a coluna como texto antes. Na opção de colagem usar:
-                "Fazer correspondencia com a formatação de destino"
+                "Fazer correspondencia com a formatação de destino"<a href="document/Instrução ordenaserial.pdf" target="_blank">Dúvidas</a>
             </p>
             
             <hr>
@@ -197,24 +197,6 @@
                 mostrar.innerHTML = ``
             }
 
-
-            function Relogio(){
-
-momentoAtual = new Date()
-
-hora = momentoAtual.getHours()
-
-minuto = momentoAtual.getMinutes()
-
-segundo = momentoAtual.getSeconds()
-
-hr= hora + " : " + minuto + " : " + segundo
-
-document.getElementById("relogio").innerHTML=`Hora atual `+hr;
-
-setTimeout("Relogio()",1000)
-
-}
 
            
         </script>
