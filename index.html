@@ -83,7 +83,8 @@
                 clique em separar.
             </p>
             <p>
-                Quando for copiar para o Excel, formatar a coluna como texto antes.
+                Quando for copiar para o Excel, formatar a coluna como texto antes. Na opção de colagem usar:
+                "Fazer correspondencia com a formatação de destino"
             </p>
             
             <hr>
@@ -133,7 +134,7 @@
            
             </div>
            
-<!-- <a href="asd.html">asdfg</a> -->
+
         </div>
 
     <script>
@@ -163,20 +164,17 @@
 
                 var arr = separando.value.split(separate);
                 var tamanho = arr.length -1
-                // var tamanho = arr.length - 1
+               
 
                 if(tamanho > 300 ){
                     alert("Não insira mais que 300 seriais")
                     limpar();
                 }else if(tamanho == 0){
                     alert("O valor não retornou resultados  Verifique se escolheu o separador correto")
-                    //limpar();
+                    
                 }else{
 
-                    // copiar.innerHTML = 
-                    // `
-                    // <button class="btn" onclick="copiarTexto()">Copiar</button>
-                    // `
+                  
 
                     for (let i = 0; i < arr.length; i++) {
                     mostrar.innerHTML +=
@@ -187,7 +185,7 @@
                 }
 
                 alert(tamanho + " ítens encontrados");
-                // alert((tamanho + 1) + " ítens encontrados");
+               
 
                 }
                 }
