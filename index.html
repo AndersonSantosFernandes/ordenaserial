@@ -32,6 +32,7 @@
             background-color: #f7f7f7;
             margin-top: 20px;
             padding: 5px;
+            position: relative;
         }
 
         .btn {
@@ -57,6 +58,7 @@
             margin: 0 auto;
             text-align: center;
             color: black;
+           
         }
         #copiar{
             background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6));
@@ -68,13 +70,19 @@
         .divtop{
             padding: 0 40px;
         }
+        #clock{
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
     </style>
 
-    <body>
+    <body onload="relogio()">
         <header>
            <div class="divtop"><h1> Ordenação de seriais </h1></div> 
         </header>
         <div class="container main">
+            <div id="clock"></div>
             <p>Para ordenar é necessario haver um tipo de separador entre os seriais,
                 como nas opções a direita.
             </p>
@@ -197,7 +205,26 @@
                 mostrar.innerHTML = ``
             }
 
+            function relogio(){
 
+                tempo = new Date()
+
+                hora = tempo.getHours()
+                minito = tempo.getMinutes()
+                segundo = tempo.getSeconds()
+                
+                mostraRelogio = document.getElementById("clock")
+                mostraRelogio.innerHTML = zeroEsquerda(hora) + ":" + zeroEsquerda(minito) + ":" + zeroEsquerda(segundo)
+            }
+
+            function zeroEsquerda(hms){
+                if(hms < 10){
+                    hms = "0" + hms
+                }
+                return hms
+            }
+
+            setInterval(relogio,1000)
            
         </script>
 
