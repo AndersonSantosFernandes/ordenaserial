@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+
+        <title>Split JS</title>
+    </head>
+    <style>
+        :root{
+            --back1: #d6f54f;
+            --back2: green;
+        }
+        body {
+            background-color: var(--back1);
+            color: var(--back2);
+        }
+
+        
+        .main {
+            background-color: #f7f7f7;
+            margin-top: 20px;
+            padding: 5px;
+            position: relative;
+        }
+
+        
+        header{
+            background-color: var(--back2);
+            color: var(--back1);
+            padding-bottom: 3px;
+            display: flex;
+            justify-content:space-between;
+        }
+        
+                #clock{
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        #hora{
+            width: 1080px;
+            height: 50px;
+            border: 1px solid green;
+            margin-bottom: 15px;
+        }
+        #minuto{
+            width: 1080px;
+            height: 50px;
+            border: 1px solid green;
+            margin-bottom: 15px;
+        }
+        #segundo{
+            width: 1080px;
+            height: 50px;
+            border: 1px solid green;
+            
+        }
+        #segundoin{        
+            height: 48px;
+            /* background-image: linear-gradient(90deg, purple,orange, gray); */
+        }
+         #minutoin{        
+            height: 48px;
+            /* background-image: linear-gradient(90deg, purple,orange, gray); */
+        }
+         #horain{        
+            height: 48px;
+            background-image: linear-gradient(90deg, purple,orange, gray);
+        }
+        #numhora{
+            width: 1000px;
+            margin-left: 75px;
+            display: flex;
+            justify-content: space-between;
+            color: black;
+            font-weight: bold;  
+        }
+        #numminuto{
+            width: 1080px;
+            display: flex;
+            justify-content: space-between;
+            color: black;
+            font-weight: bold;
+        }
+        #numsegundo{
+            width: 1080px;
+            display: flex;
+            justify-content: space-between;
+            color: black;
+            font-weight: bold;
+            color: rgb(red, green, blue);
+        }
+        #ponteiro{
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 1px solid purple;
+            border-radius: 50%;
+        }
+        #inponteiro{
+            width: 2px;
+            height: 100px;
+            margin: 0 auto;
+            background-color: purple;
+            
+        }
+
+    </style>
+
+    <body onload="relogio()">
+        <header>
+           <div class="divtop"><h1> Relógio de barras </h1> <div id="clock"></div></div> 
+        </header>
+        <div class="container main">  
+              
+            <div id="hora"> <div id="horain"> <div id="numhora">
+                <p>01</p><p>02</p><p>03</p>
+                <p>04</p>                <p>05</p>
+                <p>06</p>                <p>07</p>
+                <p>08</p>                <p>09</p>
+                <p>10</p>                <p>11</p>
+                 <p>12</p>  <!--              <p>13</p>
+                <p>14</p>                <p>15</p>
+                <p>16</p>                <p>17</p>
+                <p>18</p>                <p>19</p>
+                <p>20</p>                <p>21</p>
+                <p>22</p>                <p>23</p><p>00</p> -->
+                
+            </div>      </div> </div>
+           
+            <div id="minuto"> <div id="minutoin"> <div id="numminuto">
+                <p>0</p> <p>5</p> <p>10</p> <p>15</p> <p>20</p> <p>25</p> <p>30</p>
+                <p>35</p> <p>40</p> <p>45</p> <p>50</p> <p>55</p> <p>60</p>
+            </div></div> </div>
+            
+            <div id="segundo"> <div id="segundoin"><div id="numsegundo">
+                <p>0</p> <p>5</p> <p>10</p> <p>15</p> <p>20</p> <p>25</p> <p>30</p>
+                <p>35</p> <p>40</p> <p>45</p> <p>50</p> <p>55</p> <p>60</p>
+            </div></div> </div>
+
+
+            <div id="ponteiro">
+                <div id="inponteiro">
+
+                </div>
+            </div>
+        </div>
+
+    <script>
+
+            function separar() {
+                // var copiar = document.getElementById("copiar");
+                var mostrar = document.getElementById("show");
+                var separando = document.getElementById("separa");
+
+                // para selecionar o input rádio deve se selecionar por nome, não pela classe ou id.
+                var radio = document.getElementsByName("separ");
+
+                if(separando.value == ""){
+                    alert("Insira valores com separadores")
+                }else{
+                    if (radio[0].checked) {
+                    separate = ";"
+                } else if (radio[1].checked) {
+                    separate = ","
+                } else if (radio[2].checked) {
+                    separate = "-"
+                } else if (radio[3].checked) {
+                    separate = "."
+                } else if (radio[4].checked) {
+                    separate = " "
+                }
+
+                var arr = separando.value.split(separate);
+                var tamanho = arr.length -1               
+
+                if(tamanho > 300 ){
+                    alert("Não insira mais que 300 seriais")
+                    limpar();
+                }else if(tamanho == 0){
+                    alert("O valor não retornou resultados  Verifique se escolheu o separador correto")
+                    
+                }else{                  
+
+                    for (let i = 0; i < arr.length; i++) {
+                    mostrar.innerHTML +=
+                        `            
+            ${arr[i]}<br>
+            
+                `
+                }
+
+                alert(tamanho + " ítens encontrados");               
+
+                }
+                }
+                            
+            }
+            function limpar() {
+                var mostrar = document.getElementById("show");
+                var separando = document.getElementById("separa").value = "";
+                mostrar.innerHTML = ``
+            }
+            function relogio(){
+                ponteiro = document.getElementById("ponteiro")
+                segundoin = document.getElementById("segundoin")
+                minutoin = document.getElementById("minutoin")
+                horain = document.getElementById("horain")
+                tempo = new Date()
+                
+                hora = tempo.getHours()
+                minuto =     tempo.getMinutes()
+                segundo = tempo.getSeconds()
+                
+                mostraRelogio = document.getElementById("clock")
+                mostraRelogio.innerHTML = zeroEsquerda(hora) + ":" + zeroEsquerda(minuto) + ":" + zeroEsquerda(segundo)
+
+                segundoin.style.width=""+(segundo * 18)+"px"
+                // segundoin.style.backgroundColor=`#${segundo}99${minuto}`
+                segundoin.style.backgroundImage=`linear-gradient(90deg, #6${segundo}9${segundo},#${segundo}5${segundo}5, #${segundo}4${segundo}1)`
+                minutoin.style.width=""+(minuto * 18 )+"px"
+                minutoin.style.backgroundImage=`linear-gradient(90deg, #6${minuto}9${minuto},#${minuto}5${minuto}5, #${minuto}4${minuto}1)`
+               
+                if(hora == 0){
+                    hora = 24
+                }
+
+               if(hora > 12){
+                horas = hora - 12
+               }else{
+                horas = hora
+               }
+                horain.style.width=""+(horas * 90)+"px"
+
+
+                ponteiro.style.transform="rotate("+(segundo*6)+"deg)"
+
+            }
+
+            function zeroEsquerda(hms){
+                if(hms < 10){
+                    hms = "0" + hms
+                }
+                return hms
+            }
+
+            setInterval(relogio,1000)
+           
+        </script>
+
+    </body>
+</html>
