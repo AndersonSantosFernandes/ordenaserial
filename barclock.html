@@ -26,7 +26,8 @@
 
         
         .main {
-            background-color: #f7f7f7;
+            /* background-color: #f7f7f7; */
+            background-image: linear-gradient(tomato,rgb(0, 255, 0));
             margin-top: 20px;
             padding: 5px;
             position: relative;
@@ -103,15 +104,37 @@
         #ponteiro{
             width: 200px;
             height: 200px;
-            margin: 20px auto;
             border: 1px solid purple;
             border-radius: 50%;
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            margin-left: -100px;
         }
         #inponteiro{
             width: 2px;
-            height: 100px;
-            margin: 0 auto;
+            height: 95px;
+            margin:  auto;
             background-color: purple;
+            margin-top: 5px;
+        }
+        #ponteiro1{
+            width: 200px;
+            height: 200px;
+            
+            border: 1px solid rgb(18, 73, 4);
+            border-radius: 50%;
+            position: absolute;
+            top: 200px;
+            left: 50%;
+            margin-left: -100px;
+        }
+        #inponteiro1{
+            width: 2px;
+            height: 80px;
+            margin: auto;
+            margin-top: 20px;
+            background-color: rgb(18, 73, 4);
             
         }
 
@@ -151,6 +174,11 @@
 
             <div id="ponteiro">
                 <div id="inponteiro">
+
+                </div>
+            </div>
+            <div id="ponteiro1">
+                <div id="inponteiro1">
 
                 </div>
             </div>
@@ -213,6 +241,7 @@
             }
             function relogio(){
                 ponteiro = document.getElementById("ponteiro")
+                ponteiro1 = document.getElementById("ponteiro1")
                 segundoin = document.getElementById("segundoin")
                 minutoin = document.getElementById("minutoin")
                 horain = document.getElementById("horain")
@@ -244,6 +273,7 @@
 
 
                 ponteiro.style.transform="rotate("+(segundo*6)+"deg)"
+                ponteiro1.style.transform="rotate("+(hora*30)+"deg)"
 
             }
 
