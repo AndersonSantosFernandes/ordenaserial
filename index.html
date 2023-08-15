@@ -75,6 +75,7 @@
             top: 10px;
             right: 20px;
         }
+        
     </style>
 
     <body onload="relogio()">
@@ -103,6 +104,10 @@
                     <textarea name="separa" id="separa" cols="90" rows="10" placeholder="Suporta no máximo 300 ítens"></textarea>
                 </div>
                 <div class="col-md-3">
+                    <p>
+                        <label for="sp930">Marque para SP930 com QR code</label>
+                        <input type="checkbox" name="sp930" id="sp930" onclick="dica()">
+                    </p>
 
                     <p>
                         <label for="pvirgula">Ponto e vírgula</label>
@@ -141,14 +146,20 @@
             <div id="show">
            
             </div>
-           
+
+            <div id="showdica">
+                <div id="imgdica">
+
+                </div>
+            </div>
+          
 
         </div>
        
     <script>
 
             function separar() {
-                // var copiar = document.getElementById("copiar");
+                var sp930 = document.getElementById("sp930");
                 var mostrar = document.getElementById("show");
                 var separando = document.getElementById("separa");
 
@@ -183,16 +194,33 @@
                 }else{
 
                   
+                    if (sp930.checked) {
+                            for (let i = 0; i < arr.length; i++) {
 
-                    for (let i = 0; i < arr.length; i++) {
-                    mostrar.innerHTML +=
-                        `            
-            ${arr[i]}<br>
-            
-                `
-                }
+                                if (arr[i].length < 17) {
 
-                alert(tamanho + " ítens encontrados");
+                                    mostrar.innerHTML +=
+                                        `            
+                                    ${arr[i]}<br>
+                                    
+                                        `
+                                }
+                            }
+                            
+                        } else {
+                            for (let i = 0; i < arr.length; i++) {
+
+                                mostrar.innerHTML +=
+                                    `           
+                            ${arr[i]}<br>
+                            
+                                `
+
+                            }
+                        }
+                 
+
+                alert("Os seriais foram separados");
                
 
                 }
@@ -225,6 +253,11 @@
 
             setInterval(relogio,1000)
            
+
+            function dica(){
+                alert("A cada bip no QR code inserir uma virgula, pois se não o ultimo serial da caixa se juntará com o primeiro da próxima e será perdido.")
+            }
+
         </script>
 
     </body>

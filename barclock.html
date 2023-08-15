@@ -182,6 +182,11 @@
 
                 </div>
             </div>
+
+            <div id="msg">
+
+            </div>
+
         </div>
 
     <script>
@@ -250,6 +255,10 @@
                 hora = tempo.getHours()
                 minuto =     tempo.getMinutes()
                 segundo = tempo.getSeconds()
+
+                if(minuto == 40){
+                    mensagem()
+                }
                 
                 mostraRelogio = document.getElementById("clock")
                 mostraRelogio.innerHTML = zeroEsquerda(hora) + ":" + zeroEsquerda(minuto) + ":" + zeroEsquerda(segundo)
@@ -285,6 +294,11 @@
             }
 
             setInterval(relogio,1000)
+
+            function mensagem(){
+                let mensagem = document.getElementById("msg")
+                mensagem.innerHTML = "<h1>Anderson santos fernandes<h1>"
+            }
            
         </script>
 
