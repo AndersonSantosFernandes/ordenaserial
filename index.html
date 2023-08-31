@@ -18,21 +18,26 @@
         :root{
             --back1: #d6f54f;
             --back2: green;
+            --black: rgb(70, 62, 62);
         }
         body {
             background-color: var(--back1);
-            color: var(--back2);
+            color: var(--black);
+            
         }
 
         textarea {
             width: 100%;
+            box-shadow: 5px 5px 5px black;
         }
 
         .main {
-            background-color: #f7f7f7;
+            background-color: #c1f1a1;
             margin-top: 20px;
             padding: 5px;
             position: relative;
+            border-radius: 20px;
+            border: 2px solid var(--black);
         }
 
         .btn {
@@ -41,9 +46,11 @@
             font-weight: bold;
             color: var(--back2);
             background-color: var(--back1);
+            box-shadow: 5px 5px 5px black;
         }
         header{
-            background-color: var(--back2);
+            /* background-color: var(--black); */
+            background-image: linear-gradient(var(--black),var(--back2),var(--black));
             color: var(--back1);
             padding-bottom: 3px;
             display: flex;
@@ -53,12 +60,12 @@
             margin-left: 10%;
         }
         #show{
-            background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6));
+            background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6),rgb(0, 255, 98));
             width: 300px;
             margin: 0 auto;
             text-align: center;
             color: black;
-           
+           font-weight: bold;
         }
         #copiar{
             background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6));
@@ -75,12 +82,19 @@
             top: 10px;
             right: 20px;
         }
+
+        .linke{
+            text-decoration: none;
+            margin-left: 30px;
+            color: var(--back1);
+        }
         
     </style>
 
     <body onload="relogio()">
         <header>
-           <div class="divtop"><h1> Ordenação de seriais </h1></div> 
+           <div class="divtop"><h1> Ordenação de seriais </h1>  <a class="linke" href="plnilhas/MODELO ENVIO.xlsx">Modelo de envio</a><a class="linke" href="plnilhas/Medidas de caixas.xlsx">Medidas de caixas</a><a class="linke" href="plnilhas/Separar seriais de chip.xlsx">Chip NEW GOOD QR Code</a>
+            <a class="linke" href="plnilhas/CALCULA VOLUMES.xlsx">Calcula volumes</a></div> 
         </header>
         <div class="container main">
             <div id="clock"></div>
