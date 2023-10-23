@@ -1,190 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
 
-        <title>Split JS</title>
-    </head>
-    <style>
-        :root{
-            --back1: #d6f54f;
-            --back2: green;
-            --black: rgb(70, 62, 62);
-        }
-        body {
-            background-color: var(--back1);
-            color: var(--black);
-            
-        }
+        <link rel="stylesheet" href="css/style.css">
 
-        textarea {
-            width: 100%;
-            box-shadow: 5px 5px 5px black;
-        }
+    <title>Split JS</title>
+</head>
 
-        .main {
-            background-color: #c1f1a1;
-            margin-top: 20px;
-            padding: 5px;
-            position: relative;
-            border-radius: 20px;
-            border: 2px solid var(--black);
-        }
 
-        .btn {
-            border: 2px solid var(--back2);
-            width: 120px;
-            font-weight: bold;
-            color: var(--back2);
-            background-color: var(--back1);
-            box-shadow: 5px 5px 5px black;
-        }
-        header{
-            /* background-color: var(--black); */
-            background-image: linear-gradient(var(--black),var(--back2),var(--black));
-            color: var(--back1);
-            padding-bottom: 3px;
-            display: flex;
-            justify-content:space-between;
-        }
-        #master{
-            margin-left: 10%;
-        }
-        #show{
-            background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6),rgb(0, 255, 98));
-            width: 300px;
-            margin: 0 auto;
-            text-align: center;
-            color: black;
-           font-weight: bold;
-        }
-        #copiar{
-            background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6));
-            width: 300px;
-            margin: 0 auto;
-            text-align: center;
-            color: black;
-        }
-        .divtop{
-            padding: 0 40px;
-        }
-        #clock{
-            position: absolute;
-            top: 10px;
-            right: 20px;
-        }
+<body onload="relogio()">
+    <header>
+       
+            <h1> Ordenação de seriais    </h1>
+    </header>
+    <div class="container main">
+        <div id="clock"></div>
+        <p>Para ordenar é necessario haver um tipo de separador entre os seriais,
+            como nas opções a direita.
+        </p>
+        <p>
+            Insira os seriais, escolha o separador entre eles e
+            clique em separar.
+        </p>
+        <p>
+            Quando for copiar para o Excel, formatar a coluna como texto antes. Na opção de colagem usar:
+            "Fazer correspondencia com a formatação de destino"<a href="document/Instrução ordenaserial.pdf"
+                target="_blank">Dúvidas</a>
+        </p>
 
-        .linke{
-            text-decoration: none;
-            margin-left: 30px;
-            color: var(--back1);
-        }
-        
-    </style>
+        <hr>
+        <h1 id="titulo"></h1>
 
-    <body onload="relogio()">
-        <header>
-           <div class="divtop"><h1> Ordenação de seriais </h1> </div> 
-            <!-- <a class="linke" href="plnilhas/MODELO ENVIO.xlsx">Modelo de envio</a><a class="linke" href="plnilhas/Medidas de caixas.xlsx">Medidas de caixas</a><a class="linke" href="plnilhas/Separar seriais de chip.xlsx">Chip NEW GOOD QR Code</a>
-            <a class="linke" href="plnilhas/CALCULA VOLUMES.xlsx">Calcula volumes</a> -->
-        </header>
-        <div class="container main">
-            <div id="clock"></div>
-            <p>Para ordenar é necessario haver um tipo de separador entre os seriais,
-                como nas opções a direita.
-            </p>
-            <p>
-                    Insira os seriais, escolha o separador entre eles e 
-                clique em separar.
-            </p>
-            <p>
-                Quando for copiar para o Excel, formatar a coluna como texto antes. Na opção de colagem usar:
-                "Fazer correspondencia com a formatação de destino"<a href="document/Instrução ordenaserial.pdf" target="_blank">Dúvidas</a>
-            </p>
-            
-            <hr>
-            <h1 id="titulo"></h1>
-
-            <div class="row">
-                <div class="col-md-9">
-                    <textarea name="separa" id="separa" cols="90" rows="10" placeholder="Suporta no máximo 500 ítens"></textarea>
-                </div>
-                <div class="col-md-3">
-                    <p>
-                        <label for="sp930">Marque para SP930 com QR code</label>
-                        <input type="checkbox" name="sp930" id="sp930" onclick="dica()">
-                    </p>
-
-                    <p>
-                        <label for="pvirgula">Ponto e vírgula</label>
-                        <input type="radio" name="separ" id="pvirgula" checked>
-                    </p>
-                    <p>
-                        <label for="virgula">Vírgula</label>
-                        <input type="radio" name="separ" id="virgula">
-                    </p>
-                    <p>
-                        <label for="traco">Traço</label>
-                        <input type="radio" name="separ" id="traco">
-                    </p>
-                    <p>
-                        <label for="ponto">Ponto</label>
-                        <input type="radio" name="separ" id="ponto">
-                    </p>
-                    <p>
-                        <label for="espaco">Espaço</label>
-                        <input type="radio" name="separ" id="espaco">
-                    </p>
-                    <hr>
-                    <button class="btn" onclick="separar()">Separar</button>
-                    <button class="btn" onclick="limpar()">Limpar</button>
-                    
-                </div>
+        <div class="row">
+            <div class="col-md-9">
+                <textarea name="separa" id="separa" cols="90" rows="10"
+                    placeholder="Suporta no máximo 500 ítens"></textarea>
             </div>
+            <div class="col-md-3">
+                <p>
+                    <label for="sp930">Marque para SP930 com QR code</label>
+                    <input type="checkbox" name="sp930" id="sp930" onclick="dica()">
+                </p>
 
-            <hr>
-            <div id="copiar">
+                <p>
+                    <label for="pvirgula">Ponto e vírgula</label>
+                    <input type="radio" name="separ" id="pvirgula" checked>
+                </p>
+                <p>
+                    <label for="virgula">Vírgula</label>
+                    <input type="radio" name="separ" id="virgula">
+                </p>
+                <p>
+                    <label for="traco">Traço</label>
+                    <input type="radio" name="separ" id="traco">
+                </p>
+                <p>
+                    <label for="ponto">Ponto</label>
+                    <input type="radio" name="separ" id="ponto">
+                </p>
+                <p>
+                    <label for="espaco">Espaço</label>
+                    <input type="radio" name="separ" id="espaco">
+                </p>
+                <hr>
+                <button class="btn" onclick="separar()">Separar</button>
+                <button class="btn" onclick="limpar()">Limpar</button>
+                <button class="btn"><a  href="serialChip.html">Chip</a></button>
+    
 
             </div>
-            <div class="show">
+        </div>
 
-            </div>
-            <div id="show">
-           
-            </div>
-
-            <div id="showdica">
-                <div id="imgdica">
-
-                </div>
-            </div>
-          
+        <hr>
+        <div id="copiar">
 
         </div>
-       
+        <div class="show">
+
+        </div>
+        <div id="show">
+
+        </div>
+
+        <div id="showdica">
+            <div id="imgdica">
+
+            </div>
+        </div>
+
+
+    </div>
+
     <script>
 
-            function separar() {
-                var sp930 = document.getElementById("sp930");
-                var mostrar = document.getElementById("show");
-                var separando = document.getElementById("separa");
+        function separar() {
+            var sp930 = document.getElementById("sp930");
+            var mostrar = document.getElementById("show");
+            var separando = document.getElementById("separa");
 
-                // para selecionar o input rádio deve se selecionar por nome, não pela classe ou id.
-                var radio = document.getElementsByName("separ");
+            // para selecionar o input rádio deve se selecionar por nome, não pela classe ou id.
+            var radio = document.getElementsByName("separ");
 
-                if(separando.value == ""){
-                    alert("Insira valores com separadores")
-                }else{
-                    if (radio[0].checked) {
+            if (separando.value == "") {
+                alert("Insira valores com separadores")
+            } else {
+                if (radio[0].checked) {
                     separate = ";"
                 } else if (radio[1].checked) {
                     separate = ","
@@ -197,83 +127,84 @@
                 }
 
                 var arr = separando.value.split(separate);
-                var tamanho = arr.length -1
-               
+                var tamanho = arr.length - 1
 
-                if(tamanho > 500 ){
+
+                if (tamanho > 500) {
                     alert("Não insira mais que 500 seriais")
                     limpar();
-                }else if(tamanho == 0){
+                } else if (tamanho == 0) {
                     alert("O valor não retornou resultados  Verifique se escolheu o separador correto")
-                    
-                }else{
 
-                  
+                } else {
+
+
                     if (sp930.checked) {
-                            for (let i = 0; i < arr.length; i++) {
+                        for (let i = 0; i < arr.length; i++) {
 
-                                if (arr[i].length < 17) {
+                            if (arr[i].length < 17) {
 
-                                    mostrar.innerHTML +=
-                                        `            
+                                mostrar.innerHTML +=
+                                    `            
                                     ${arr[i]}<br>
                                     
                                         `
-                                }
                             }
-                            
-                        } else {
-                            for (let i = 0; i < arr.length; i++) {
+                        }
 
-                                mostrar.innerHTML +=
-                                    `           
+                    } else {
+                        for (let i = 0; i < arr.length; i++) {
+
+                            mostrar.innerHTML +=
+                                `           
                             ${arr[i]}<br>
                             
                                 `
 
-                            }
                         }
-                 
+                    }
 
-                alert("Os seriais foram separados");
-               
+
+                    alert("Os seriais foram separados");
+
 
                 }
-                }
-                            
-            }
-            function limpar() {
-                var mostrar = document.getElementById("show");
-                var separando = document.getElementById("separa").value = "";
-                mostrar.innerHTML = ``
-            }
-            function relogio(){
-
-                tempo = new Date()
-
-                hora = tempo.getHours()
-                minito = tempo.getMinutes()
-                segundo = tempo.getSeconds()
-                
-                mostraRelogio = document.getElementById("clock")
-                mostraRelogio.innerHTML = zeroEsquerda(hora) + ":" + zeroEsquerda(minito) + ":" + zeroEsquerda(segundo)
             }
 
-            function zeroEsquerda(hms){
-                if(hms < 10){
-                    hms = "0" + hms
-                }
-                return hms
+        }
+        function limpar() {
+            var mostrar = document.getElementById("show");
+            var separando = document.getElementById("separa").value = "";
+            mostrar.innerHTML = ``
+        }
+        function relogio() {
+
+            tempo = new Date()
+
+            hora = tempo.getHours()
+            minito = tempo.getMinutes()
+            segundo = tempo.getSeconds()
+
+            mostraRelogio = document.getElementById("clock")
+            mostraRelogio.innerHTML = zeroEsquerda(hora) + ":" + zeroEsquerda(minito) + ":" + zeroEsquerda(segundo)
+        }
+
+        function zeroEsquerda(hms) {
+            if (hms < 10) {
+                hms = "0" + hms
             }
+            return hms
+        }
 
-            setInterval(relogio,1000)
-           
+        setInterval(relogio, 1000)
 
-            function dica(){
-                alert("A cada bip no QR code inserir uma virgula, pois se não o ultimo serial da caixa se juntará com o primeiro da próxima e será perdido.")
-            }
 
-        </script>
+        function dica() {
+            alert("A cada bip no QR code inserir uma virgula, pois se não o ultimo serial da caixa se juntará com o primeiro da próxima e será perdido.")
+        }
 
-    </body>
+    </script>
+
+</body>
+
 </html>
