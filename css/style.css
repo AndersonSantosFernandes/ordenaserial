@@ -46,7 +46,9 @@ header {
 #master {
     margin-left: 10%;
 }
-
+.show{
+    text-align: center;
+}
 #show {
     background-image: linear-gradient(rgb(0, 255, 98), rgb(159, 255, 6), rgb(0, 255, 98));
     width: 300px;

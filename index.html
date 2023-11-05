@@ -42,11 +42,15 @@
         <h1 id="titulo"></h1>
 
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <textarea name="separa" id="separa" cols="90" rows="10"
                     placeholder="Suporta no máximo 500 ítens"></textarea>
+                    <hr>
+                    <button class="btn" onclick="separar()">Separar</button>
+                    <button class="btn" onclick="limpar()">Limpar</button>
+                    <button class="btn"><a  href="serialChip.html">Chip</a></button>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <p>
                     <label for="sp930">Marque para SP930 com QR code</label>
                     <input type="checkbox" name="sp930" id="sp930" onclick="dica()">
@@ -54,39 +58,37 @@
 
                 <p>
                     <label for="pvirgula">Ponto e vírgula</label>
-                    <input type="radio" name="separ" id="pvirgula" checked>
-                </p>
-                <p>
+                    <input type="radio" name="separ" id="pvirgula" checked> -
+               
                     <label for="virgula">Vírgula</label>
                     <input type="radio" name="separ" id="virgula">
                 </p>
                 <p>
                     <label for="traco">Traço</label>
-                    <input type="radio" name="separ" id="traco">
-                </p>
-                <p>
+                    <input type="radio" name="separ" id="traco"> -
+               
                     <label for="ponto">Ponto</label>
-                    <input type="radio" name="separ" id="ponto">
-                </p>
-                <p>
+                    <input type="radio" name="separ" id="ponto"> -
+                
                     <label for="espaco">Espaço</label>
                     <input type="radio" name="separ" id="espaco">
-                </p>
-                <hr>
-                <button class="btn" onclick="separar()">Separar</button>
-                <button class="btn" onclick="limpar()">Limpar</button>
-                <button class="btn"><a  href="serialChip.html">Chip</a></button>
-    
-
+               
+              
             </div>
+        
+       
         </div>
 
-        <hr>
+     
         <div id="copiar">
 
         </div>
+        <br>
         <div class="show">
+            <p>
 
+                Este sistema foi desenvolvido por Anderson Fernandes - andersantfer@gmail.com
+            </p>
         </div>
         <div id="show">
 
