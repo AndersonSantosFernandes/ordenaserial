@@ -88,3 +88,25 @@ button a{
     border-radius: 6px;
     color: var(--back2);
 }
+.paragrfo__autoria{
+    width: max-content;
+    /* margin-left: -614px; */
+    animation: margem 15s linear  infinite;
+}
+
+@keyframes margem{
+    0%{
+        margin-left: 200px;
+    }
+    100%{
+        margin-left: -614px ;
+    }
+}
+
+.autoria{
+    /* border: 1px solid purple; */
+    width: 200px;
+    height: 20px;
+    overflow: hidden;
+    margin:10px auto;
+}
