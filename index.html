@@ -51,17 +51,14 @@
                     <button class="btn"><a  href="serialChip.html">Chip</a></button>
             </div>
             <div class="col-md-4">
-                <p>
-                    <label for="sp930">Marque para SP930 com QR code</label>
-                    <input type="checkbox" name="sp930" id="sp930" onclick="dica()">
-                </p>
+               
 
                 <p>
                     <label for="pvirgula">Ponto e vírgula</label>
-                    <input type="radio" name="separ" id="pvirgula" checked> -
+                    <input type="radio" name="separ" id="pvirgula" > -
                
                     <label for="virgula">Vírgula</label>
-                    <input type="radio" name="separ" id="virgula">
+                    <input type="radio" name="separ" id="virgula" checked>
                 </p>
                 <p>
                     <label for="traco">Traço</label>
@@ -109,7 +106,7 @@
     <script>
 
         function separar() {
-            var sp930 = document.getElementById("sp930");
+           
             var mostrar = document.getElementById("show");
             var separando = document.getElementById("separa");
 
@@ -144,20 +141,9 @@
                 } else {
 
 
-                    if (sp930.checked) {
-                        for (let i = 0; i < arr.length; i++) {
+                  
 
-                            if (arr[i].length < 17) {
-
-                                mostrar.innerHTML +=
-                                    `            
-                                    ${arr[i]}<br>
-                                    
-                                        `
-                            }
-                        }
-
-                    } else {
+                   
                         for (let i = 0; i < arr.length; i++) {
 
                             mostrar.innerHTML +=
@@ -167,7 +153,7 @@
                                 `
 
                         }
-                    }
+                    
 
 
                     alert("Os seriais foram separados");
