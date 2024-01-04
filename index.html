@@ -51,7 +51,10 @@
                     <button class="btn"><a  href="serialChip.html">Chip</a></button>
             </div>
             <div class="col-md-4">
-               
+                <p>
+                    <label for="sp930">Marque para POS TECTOY Q92 X WIFI com QR code</label>
+                    <input type="checkbox" name="sp930" id="sp930">
+                </p>
 
                 <p>
                     <label for="pvirgula">Ponto e vírgula</label>
@@ -144,6 +147,23 @@
                   
 
                    
+                    if (sp930.checked) {
+                        for (let i = 0; i < arr.length; i++) {
+
+                            if (arr[i].length > 9) {
+
+                                mostrar.innerHTML +=
+                                    `            
+                                     ${arr[i]}<br>
+                                    
+                                        `
+                            }
+                        }
+
+
+
+
+                    } else {
                         for (let i = 0; i < arr.length; i++) {
 
                             mostrar.innerHTML +=
@@ -153,6 +173,8 @@
                                 `
 
                         }
+                    }
+
                     
 
 
@@ -163,6 +185,19 @@
             }
 
         }
+
+        var texto = document.getElementById("separa")
+        document.addEventListener("keypress", function (e) {
+            if (e.key == "Enter") {
+                console.log("Pressionou enter")
+                virgula = ","
+                texto.value += `${virgula}`
+            }
+        })
+
+
+
+
         function limpar() {
             var mostrar = document.getElementById("show");
             var separando = document.getElementById("separa").value = "";
