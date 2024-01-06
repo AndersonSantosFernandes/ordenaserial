@@ -114,3 +114,39 @@ button a{
     overflow: hidden;
     margin:10px auto;
 }
+
+.planilhas{
+    width: 100%;
+    /* height: 200px; */
+   
+    margin: 20px auto;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.img__planilhas{
+    width: 200px;
+    height: 200px;
+   
+
+}
+
+.desc__planilhas{
+    height: 200px;
+    width: 600px;
+    padding: 6px;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.imgs__docs{
+    width: 100%;
+    height: 100%;
+    transition: all 1s;
+}
+.imgs__docs:hover{
+   transform: scale(1.3);
+}

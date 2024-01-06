@@ -49,6 +49,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="serialChip.html">Separar seriais de chip</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="downloads.html">Planilhas utilitárias</a>
+                  </li>
                
               </ul>
               
@@ -141,6 +144,8 @@
 
     <script>
 
+        
+
         function separar() {
            
             var mostrar = document.getElementById("show");
@@ -176,9 +181,6 @@
 
                 } else {
 
-
-                  
-
                    
                     if (sp930.checked) {
                         for (let i = 0; i < arr.length; i++) {
@@ -192,9 +194,6 @@
                                         `
                             }
                         }
-
-
-
 
                     } else {
                         for (let i = 0; i < arr.length; i++) {
@@ -219,15 +218,23 @@
 
         }
 
-        var texto = document.getElementById("separa")
+       
+
+    var texto = document.getElementById("separa")
         document.addEventListener("keypress", function (e) {
             if (e.key == "Enter") {
                 console.log("Pressionou enter")
+                console.log(sp930.checked)
                 virgula = ","
+                var adicionarVirgula = document.getElementById("sp930")
+                if(adicionarVirgula.checked == true){
                 texto.value += `${virgula}`
+                }
             }
         })
 
+        
+    
 
 
 
