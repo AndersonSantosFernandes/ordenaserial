@@ -65,23 +65,25 @@
       </nav>
     <div class="container main">
 
+      <div class="contente">
         <p>
-            Quando for copiar para o Excel, formatar a coluna como texto antes. <br> Na opção de colagem usar:
-            "Fazer correspondencia com a formatação de destino"<a href="document/Instrução ordenaserial.pdf"
-                target="_blank">Dúvidas</a>
+            <label for="qt_envio">Quantidade a enviar</label><br>
+            <input type="number" name="qt_envio" id="qt_envio">
+
         </p>
-        <hr>
+        <p>
+            <label for="qt_por_caixa">Quantidade por caixa</label><br>
+            <input type="number" name="qt_por_caixa" id="qt_por_caixa">
+        </p>
+                
+        <input class="btn" type="button" value="Calcular" onclick="calcular()">
 
-        <label for="seriais">Bipar seriais aqui</label>
-        <input style="width: 100% ;" type="text" name="" id="seriais" autofocus>
-        <br>
-        <hr>
+      
 
-        <button class="btn" onclick="contaString()">Processar</button>
-        <button class="btn" onclick="limpar()">Limpar</button>
-    
-        <hr>
-        <div class="show">
+      </div>
+      <div id="resultado">
+       
+    </div>
             <div class="autoria">
                 <p class="paragrfo__autoria">
 
@@ -89,44 +91,43 @@
                 Este sistema foi desenvolvido por Anderson Fernandes - andersantfer@gmail.com
             </p>
             </div>
-        </div>
+       
     </div>
     <br>
-    <div id="show">
+   
+<script>
+    function calcular(){
+        var qtEnvio = document.getElementById("qt_envio")
+        var qtCaixa = document.getElementById("qt_por_caixa")
+        var resposta = document.getElementById("resultado")
 
-    </div>
+        divisao = qtEnvio.value / qtCaixa.value
+        sobra = qtEnvio.value % qtCaixa.value
+        inteira = Math.floor(divisao)
+        // alert(`inteira ${inteira} quebra ${sobra}`)
 
-    <br>
-    <script>
-        function contaString() {
-            // alert("deu certo")
-            var seriais = document.getElementById("seriais");
-            var show = document.getElementById("show");
-            var cont = seriais.value;
-            var contado = cont.length
-            var contSepeara = contado / 20
+        if(sobra == 0){
+            resposta.innerHTML = 
+        `
+        <h5>
+            Você vai precisar de ${inteira} caixas com ${qtCaixa.value} unidades.
+        </h5>
+        
+        `
 
-            var inicio = 0
-            var fim = 20
-
-            for (let i = 0; i < contSepeara; i++) {
-                var sub = cont.substring(inicio, fim)
-                show.innerHTML += sub + "<br>"
-                inicio = inicio + 20
-                fim = fim + 20
-            }
-            alert(contSepeara + " seriais encontrados")
-
+        }else{
+            resposta.innerHTML = 
+        `
+        <h5>
+            Você vai precisar de ${inteira} caixas inteiras mais uma com ${sobra} unidades.
+        </h5>
+        
+        `
         }
 
-        function limpar() {
-            var seriais = document.getElementById("seriais").value = "";
-            var show = document.getElementById("show");
-            show.innerHTML = "";
-
-        }
-    </script>
-
+        
+    }
+</script>
 </body>
 
 </html>

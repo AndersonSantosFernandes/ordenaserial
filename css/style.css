@@ -156,3 +156,16 @@ button a{
 .imgs__docs:hover{
    transform: scale(1.3);
 }
+
+/* página volumes */
+
+.contente{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+#resultado{
+    text-align: center;
+}
