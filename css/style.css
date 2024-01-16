@@ -165,7 +165,14 @@ button a{
     align-items: center;
     justify-content: center;
     gap: 20px;
+    flex-direction: column;
 }
 #resultado{
     text-align: center;
+}
+@media(min-width: 700px){
+    .contente{
+
+        flex-direction: row;
+    }
 }
