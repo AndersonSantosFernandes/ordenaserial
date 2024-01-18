@@ -101,6 +101,16 @@
         var qtCaixa = document.getElementById("qt_por_caixa")
         var resposta = document.getElementById("resultado")
 
+        if(qtEnvio.value == '' || qtCaixa.value == ''){
+          resposta.innerHTML = "Preecha os dois campos"
+        }else if(qtEnvio.value <= 0  || qtCaixa.value <= 0){
+          resposta.innerHTML = "Não digite valores menores ou igual a 0!"
+        }
+        
+        
+        
+        else{
+
         divisao = qtEnvio.value / qtCaixa.value
         sobra = qtEnvio.value % qtCaixa.value
         inteira = Math.floor(divisao)
@@ -124,7 +134,7 @@
         
         `
         }
-
+      }
         
     }
 </script>
