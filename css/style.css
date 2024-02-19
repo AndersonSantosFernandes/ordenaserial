@@ -170,6 +170,14 @@ button a{
 #resultado{
     text-align: center;
 }
+.ingenico{
+    width: 200px;
+    height: 220px;
+}
+.fotos{
+    width: 100%;
+    height: 100%;
+}
 @media(min-width: 700px){
     .contente{
 
