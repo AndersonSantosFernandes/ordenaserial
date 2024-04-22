@@ -74,7 +74,7 @@
   </nav>
   <div class="container main" id="main1">
     <p>
-      Nesta página é possível obter o serial completo das máquinas move5000 e link2500 através do QR code,
+      Nesta página é possível obter o serial completo das máquinas move5000, link2500 e POS A8 através do QR code,
       caso esteja cortado.
 
     </p>
@@ -91,7 +91,8 @@
 
       <!--<input class="btn" type="button" value="Obter" onclick="obter()"> -->
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" id="buttonColor" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <button type="button" class="btn btn-primary" id="buttonColor" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop">
         Duvida
       </button>
 
@@ -130,7 +131,7 @@
             <img class="fotos" src="./imgs/qrIngenico.jpg" alt="">
           </div>
           <h5>
-            OBS.: Só vai funcionar com essas dua máquinas.
+            OBS.: Só vai funcionar com essas duas máquinas e a POS A8.
           </h5>
         </div>
         <div class="modal-footer">
@@ -148,7 +149,7 @@
     function obter() {
 
       let checado = document.getElementById('checkb')
-console.log(checado.checked)
+      console.log(checado.checked)
       if (checado.checked == true) {
         let result = document.getElementById("resultado")
         let getSerial = document.getElementById("serial")
@@ -156,7 +157,7 @@ console.log(checado.checked)
         console.log(ret)
         // console.log(ret.length)
         let obtencao = ret.substring(10, 22)
-       
+
         result.innerHTML =
           `
     ${obtencao}
@@ -187,47 +188,47 @@ console.log(checado.checked)
       if (e.key == "Enter") {// função que escuta o evento de click (keypress), neste caso a tecla Enter
 
         let checado = document.getElementById('checkb')
-console.log(checado.checked)
-      if (checado.checked == true) {
-        let result = document.getElementById("resultado")
-        let getSerial = document.getElementById("serial")
-        let ret = getSerial.value
-        console.log(ret)
-        // console.log(ret.length)
-        let obtencao = ret.substring(10, 22)
-       
-        result.innerHTML =
-          `
+        console.log(checado.checked)
+        if (checado.checked == true) {
+          let result = document.getElementById("resultado")
+          let getSerial = document.getElementById("serial")
+          let ret = getSerial.value
+          console.log(ret)
+          // console.log(ret.length)
+          let obtencao = ret.substring(10, 22)
+
+          result.innerHTML =
+            `
     ${obtencao}
     `
-        getSerial.value = ''
-      } else {
-        let result = document.getElementById("resultado")
-        let getSerial = document.getElementById("serial")
-        let ret = getSerial.value
-        console.log(ret)
-        // console.log(ret.length)
-        let obtencao = ret.substring(12, 36)
-        let anatel = ret.substring(36, 51)
-        console.log(anatel)
-        result.innerHTML =
-          `
+          getSerial.value = ''
+        } else {
+          let result = document.getElementById("resultado")
+          let getSerial = document.getElementById("serial")
+          let ret = getSerial.value
+          console.log(ret)
+          // console.log(ret.length)
+          let obtencao = ret.substring(12, 36)
+          let anatel = ret.substring(36, 51)
+          console.log(anatel)
+          result.innerHTML =
+            `
     ${obtencao}
     `
-        getSerial.value = ''
-      }
-    //     let result = document.getElementById("resultado")// div onde vai aparecer o resultado
-    //     let getSerial = document.getElementById("serial")// input de onde vem a entrada
-    //     let ret = getSerial.value //variável que recebe o valor 
+          getSerial.value = ''
+        }
+        //     let result = document.getElementById("resultado")// div onde vai aparecer o resultado
+        //     let getSerial = document.getElementById("serial")// input de onde vem a entrada
+        //     let ret = getSerial.value //variável que recebe o valor 
 
-    //     let obtencao = ret.substring(12, 36) //função que seleciona um intervalo de caracteres
+        //     let obtencao = ret.substring(12, 36) //função que seleciona um intervalo de caracteres
 
 
-    //     result.innerHTML =
-    //       `
-    // ${obtencao}
-    // `
-    //     getSerial.value = '' // limpa o campo após a execução do código
+        //     result.innerHTML =
+        //       `
+        // ${obtencao}
+        // `
+        //     getSerial.value = '' // limpa o campo após a execução do código
 
       }
     })

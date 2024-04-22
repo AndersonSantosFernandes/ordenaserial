@@ -1,8 +1,10 @@
 
 
-changeCor01 = []
+
 function changeColors() {
     
+    changeCor01 = []
+
     let inputColorBg01 = document.getElementById('bgColor1').value
     let inputColorBg02 = document.getElementById('bgColor2').value
     let inputColorMain01 = document.getElementById('mainColor1').value
@@ -21,20 +23,8 @@ function changeColors() {
 
 let myColors = localStorage.getItem("colors")
 
-if (myColors == null) {
+if (myColors != null) {
   
-    let colorsPages = { bgColor1: '#d6f54f', bgColor2: '#d6f54f', mainColor1: '#43D654', mainColor2: '#43D654', fontColor: '#000000', btnColor: '#31FF2E' }
-
-    arrayColor = []
-
-    arrayColor = JSON.parse(localStorage.getItem('colors')) || []
-
-    arrayColor.push(colorsPages)
-
-    localStorage.setItem('colors', JSON.stringify(arrayColor))
-
-} else {
-
     //Entradas
     let mainColor1 = document.getElementById('main1')
     let bodyColor = document.getElementById('bodyColor')
@@ -59,6 +49,16 @@ if (myColors == null) {
     let inputColorFont = document.getElementById('fontColor').value = getColors['fontColor']
     let inputColorButton = document.getElementById('btnColor').value = getColors['btnColor']
 
+
+} else {
+
+    let colorsPages = { bgColor1: '#d6f54f', bgColor2: '#d6f54f', mainColor1: '#43D654', mainColor2: '#43D654', fontColor: '#000000', btnColor: '#31FF2E' }
+
+
+    localStorage.setItem('colors', JSON.stringify(colorsPages))
+
+
+   
 }
 
 // 
