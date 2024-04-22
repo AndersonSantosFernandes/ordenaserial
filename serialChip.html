@@ -31,7 +31,7 @@
 
 </header> -->
 
-<body>
+<body id="bodyColor">
   <nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Separação de seriais</a>
@@ -65,14 +65,16 @@
              <li class="nav-item">
               <a class="nav-link" href="serialIngenico.html">Serial Ingenico</a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link" href="cores.html">Config. cores</a>
+            </li>
           </ul>
 
         </div>
       </div>
     </div>
   </nav>
-  <div class="container main">
+  <div class="container main" id="main1">
 
     <p>
       Quando for copiar para o Excel, formatar a coluna como texto antes. <br> Na opção de colagem usar:
@@ -86,8 +88,8 @@
     <br>
     <hr>
 
-    <button class="btn" onclick="contaString()">Processar</button>
-    <button class="btn" onclick="limpar()">Limpar</button>
+    <button class="btn" id="buttonColor" onclick="contaString()">Processar</button>
+    <button class="btn" id="buttonColor1" onclick="limpar()">Limpar</button>
 
     <hr>
     <div class="show">
@@ -106,6 +108,7 @@
   </div>
 
   <br>
+  <script src="./scripts/script1.js"></script>
   <script>
     function contaString() {
       // alert("deu certo")

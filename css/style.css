@@ -5,9 +5,10 @@
 }
 
 body {
-    background-color: var(--back1);
+    /* background-color: var(--back1); */
     color: var(--black);
-
+/* background-image: linear-gradient(var(--back1), var(--black)); */
+min-height: 90vh;
 }
 
 textarea {
@@ -16,7 +17,8 @@ textarea {
 }
 
 .main {
-    background-color: #c1f1a1;
+    /* background-color: #c1f1a1; */
+    /* background-image: linear-gradient(rgb(102, 255, 0), rgb(70, 108, 233)); */
     margin-top: 60px;
     padding: 5px;
     position: relative;

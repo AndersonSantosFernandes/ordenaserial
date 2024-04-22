@@ -26,7 +26,7 @@
 
 </header> -->
 
-<body>
+<body id="bodyColor">
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Calcular volumes de envios</a>
@@ -59,14 +59,16 @@
                    <li class="nav-item">
               <a class="nav-link" href="serialIngenico.html">Serial Ingenico</a>
             </li>
-               
+            <li class="nav-item">
+              <a class="nav-link" href="cores.html">Config. cores</a>
+            </li>
               </ul>
               
             </div>
           </div>
         </div>
       </nav>
-    <div class="container main">
+    <div class="container main" id="main1">
 
       <div class="contente">
         <p>
@@ -79,7 +81,7 @@
             <input type="number" name="qt_por_caixa" id="qt_por_caixa">
         </p>
                 
-        <input class="btn" type="button" value="Calcular" onclick="calcular()">
+        <input class="btn" id="buttonColor" type="button" value="Calcular" onclick="calcular()">
 
       
 
@@ -97,7 +99,7 @@
        
     </div>
     <br>
-   
+   <script src="./scripts/script1.js"></script>
 <script>
     function calcular(){
         var qtEnvio = document.getElementById("qt_envio")

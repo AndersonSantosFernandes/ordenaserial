@@ -22,11 +22,11 @@
         " rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Split JS</title>
+    <title>Serial máquinas</title>
 </head>
+ 
 
-
-<body onload="relogio()">
+<body onload="relogio()" id="bodyColor">
     <!-- <header>
        
             <h1> Ordenação de seriais    </h1>
@@ -65,14 +65,16 @@
                          <li class="nav-item">
               <a class="nav-link" href="serialIngenico.html">Serial Ingenico</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="cores.html">Config. cores</a>
+              </li>
                     </ul>
 
                 </div>
             </div>
         </div>
     </nav>
-    <div class="container main">
+    <div class="container main" id="main1">
         <div id="clock"><!--Aqui aparece o relógio--></div>
         <p>Para ordenar é necessario haver um tipo de separador entre os seriais,
             como nas opções a direita.
@@ -95,8 +97,8 @@
                 <textarea name="separa" id="separa" cols="90" rows="10"
                     placeholder="Suporta no máximo 500 ítens"></textarea>
                 <hr>
-                <button class="btn" onclick="separar()">Separar</button>
-                <button class="btn" onclick="limpar()">Limpar</button>
+                <button class="btn" id="buttonColor" onclick="separar()">Separar</button>
+                <button class="btn" id="buttonColor1" onclick="limpar()">Limpar</button>
 
             </div>
             <div class="col-md-4">
@@ -154,7 +156,7 @@
 
 
     </div>
-
+    <script src="./scripts/script1.js"></script>
     <script>
 
 
@@ -303,9 +305,13 @@
 
 
     </script>
+
+
+
     <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.10.3/dist/sweetalert2.all.min.js
 "></script>
+
 </body>
 
 </html>

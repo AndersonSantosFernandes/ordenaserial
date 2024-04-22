@@ -20,7 +20,7 @@
 
 
   <link rel="stylesheet" href="css/style.css">
-  <title>Separador de chip</title>
+  <title>Seriais Ingenico</title>
 </head>
 
 <!-- <header>
@@ -29,7 +29,7 @@
 
 </header> -->
 
-<body>
+<body id="bodyColor">
   <nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Separação de seriais</a>
@@ -63,14 +63,16 @@
             <li class="nav-item">
               <a class="nav-link" href="serialIngenico.html">Serial Ingenico</a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link" href="cores.html">Config. cores</a>
+            </li>
           </ul>
 
         </div>
       </div>
     </div>
   </nav>
-  <div class="container main">
+  <div class="container main" id="main1">
     <p>
       Nesta página é possível obter o serial completo das máquinas move5000 e link2500 através do QR code,
       caso esteja cortado.
@@ -89,7 +91,7 @@
 
       <!--<input class="btn" type="button" value="Obter" onclick="obter()"> -->
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <button type="button" class="btn btn-primary" id="buttonColor" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         Duvida
       </button>
 
@@ -138,7 +140,7 @@
       </div>
     </div>
   </div>
-
+  <script src="./scripts/script1.js"></script>
   <script>
 
 
