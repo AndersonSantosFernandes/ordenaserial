@@ -60,6 +60,12 @@ if (myColors != null) {
 
    
 }
+function resetColors(){
+    let colorsPages = { bgColor1: '#d6f54f', bgColor2: '#d6f54f', mainColor1: '#43D654', mainColor2: '#43D654', fontColor: '#000000', btnColor: '#31FF2E' }
+
+
+    localStorage.setItem('colors', JSON.stringify(colorsPages))
+}
 
 // 
 
