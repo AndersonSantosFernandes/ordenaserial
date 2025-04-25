@@ -85,6 +85,10 @@
 
     <label for="seriais">Bipar seriais aqui</label>
     <input style="width: 100% ;" type="text" name="" id="seriais" autofocus>
+    <label for="bipChip">Bipar chip</label>
+    <input type="radio" name="selectBip" id="bipChip" checked>
+    <label for="bipDx8000">Bipar DX8000</label>
+    <input type="radio" name="selectBip" id="bipDx8000" >
     <br>
     <hr>
 
@@ -111,21 +115,29 @@
   <script src="./scripts/script1.js"></script>
   <script>
     function contaString() {
-      // alert("deu certo")
+      
+      var selectBip = document.getElementsByName('selectBip')
+
+      if(selectBip[0].checked){
+          var contar = 20
+      }else if(selectBip[1].checked){
+          var contar = 12
+      }
+
       var seriais = document.getElementById("seriais");
       var show = document.getElementById("show");
       var cont = seriais.value;
       var contado = cont.length
-      var contSepeara = contado / 20
+      var contSepeara = contado / contar
 
       var inicio = 0
-      var fim = 20
+      var fim = contar
 
       for (let i = 0; i < contSepeara; i++) {
         var sub = cont.substring(inicio, fim)
         show.innerHTML += sub + "<br>"
-        inicio = inicio + 20
-        fim = fim + 20
+        inicio = inicio + contar
+      fim = fim + contar
       }
 
       if(contSepeara == 0){
