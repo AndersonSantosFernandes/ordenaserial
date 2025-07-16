@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./imgs/maquina.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link href="
+        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.3/dist/sweetalert2.min.css
+        " rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Serial máquinas</title>
+</head>
+ 
+
+<body onload="relogio()" id="bodyColor">
+    <!-- <header>
+       
+            <h1> Ordenação de seriais    </h1>
+    </header> -->
+    <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Separação de seriais</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Separar seriais</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Separar seriais de máquinas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="serialChip.html">Separar seriais de chip</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="downloads.html">Planilhas utilitárias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="volumes.html">Calcula volumes</a>
+                        </li>
+                         <li class="nav-item">
+              <a class="nav-link" href="serialIngenico.html">Serial Ingenico</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="cores.html">Config. cores</a>
+              </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container main" id="main1">
+        <div id="clock"><!--Aqui aparece o relógio--></div>
+        <p>Para ordenar é necessario haver um tipo de separador entre os seriais,
+            como nas opções a direita.
+        </p>
+        <p>
+            Insira os seriais, escolha o separador entre eles e
+            clique em separar.
+        </p>
+        <p>
+            Quando for copiar para o Excel, formatar a coluna como texto antes. Na opção de colagem usar:
+            "Fazer correspondencia com a formatação de destino"<a href="document/Instrução ordenaserial.pdf"
+                target="_blank">Dúvidas</a>
+        </p>
+
+        <hr>
+        <h1 id="titulo"></h1>
+
+        <div class="row">
+            <div class="col-md-8">
+                <textarea name="separa" id="separa" cols="90" rows="10"
+                    placeholder="Suporta no máximo 500 ítens"></textarea>
+                <hr>
+                <button class="btn" id="buttonColo" onclick="separar()">Separar</button>
+                <button class="btn" id="buttonColor1" onclick="limpar()">Limpar</button>
+
+            </div>
+            <div class="col-md-4">
+                <p>
+                    <label for="sp930">Marque para POS TECTOY Q92 X WIFI com QR code</label>
+                    <input type="checkbox" name="sp930" id="sp930">
+                </p>
+
+                <p>
+                    <label for="pvirgula">Ponto e vírgula</label>
+                    <input type="radio" name="separ" id="pvirgula"> -
+
+                    <label for="virgula">Vírgula</label>
+                    <input type="radio" name="separ" id="virgula" checked>
+                </p>
+                <p>
+                    <label for="traco">Traço</label>
+                    <input type="radio" name="separ" id="traco"> -
+
+                    <label for="ponto">Ponto</label>
+                    <input type="radio" name="separ" id="ponto"> -
+
+                    <label for="espaco">Espaço</label>
+                    <input type="radio" name="separ" id="espaco">
+
+
+            </div>
+
+
+        </div>
+
+
+        <div id="copiar">
+
+        </div>
+        <br>
+        <div class="show">
+            <div class="autoria">
+                <p class="paragrfo__autoria">
+
+
+                    Este sistema foi desenvolvido por Anderson Fernandes - andersantfer@gmail.com
+                </p>
+            </div>
+        </div>
+        <div id="show">
+
+        </div>
+
+        <div id="showdica">
+            <div id="imgdica">
+
+            </div>
+        </div>
+
+
+    </div>
+    <script src="./scripts/script1.js"></script>
+    <script>
+
+
+
+        function separar() {
+
+            var mostrar = document.getElementById("show");
+            var separando = document.getElementById("separa");
+
+            // para selecionar o input rádio deve se selecionar por nome, não pela classe ou id.
+            var radio = document.getElementsByName("separ");
+
+            if (separando.value == "") {
+                Swal.fire({
+                    title: "Valor inválido",
+                    text: "Insira ao menos dois valores com separador entre eles",
+                    icon: "question"
+                });
+                // alert("Insira valores com separadores")
+            } else {
+                if (radio[0].checked) {
+                    separate = ";"
+                } else if (radio[1].checked) {
+                    separate = ","
+                } else if (radio[2].checked) {
+                    separate = "-"
+                } else if (radio[3].checked) {
+                    separate = "."
+                } else if (radio[4].checked) {
+                    separate = " "
+                }
+
+                var arr = separando.value.split(separate);
+                var tamanho = arr.length - 1
+
+
+                if (tamanho > 500) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Erro",
+                        text: "Não insira mais que 500 seriais!",
+
+                    });
+                    // alert("Não insira mais que 500 seriais")
+                    limpar();
+                } else if (tamanho == 0) {
+
+                    Swal.fire({
+                        icon: "error",
+                        title: "Erro",
+                        text: "O valor não retornou resultados  Verifique se escolheu o separador correto",
+
+                    });
+                    // alert("O valor não retornou resultados  Verifique se escolheu o separador correto")
+
+                } else {
+
+
+                    if (sp930.checked) {
+                        for (let i = 0; i < arr.length; i++) {
+
+                            if (arr[i].length > 9) {
+
+                                mostrar.innerHTML +=
+                                    `            
+                                     ${arr[i]}<br>
+                                    
+                                        `
+                            }
+                        }
+
+                    } else {
+                        for (let i = 0; i < arr.length; i++) {
+
+                            mostrar.innerHTML +=
+                                `           
+                            ${arr[i]}<br>
+                            
+                                `
+
+                        }
+                    }
+
+
+                    Swal.fire({
+                        title: "Sucesso!",
+                        text: "Os serais foram separados",
+                        icon: "success"
+                    });
+
+                    // alert("Os seriais foram separados");
+
+
+                }
+            }
+
+        }
+
+
+
+        var texto = document.getElementById("separa")
+        document.addEventListener("keypress", function (e) {
+            if (e.key == "Enter") {
+                // console.log("Pressionou enter")
+                // console.log(sp930.checked)
+                virgula = ","
+                var adicionarVirgula = document.getElementById("sp930")
+                if (adicionarVirgula.checked == true) {
+                    texto.value += `${virgula}`
+                }
+            }
+        })
+
+
+
+
+
+
+        function limpar() {
+            var mostrar = document.getElementById("show");
+            var separando = document.getElementById("separa").value = "";
+            mostrar.innerHTML = ``
+        }
+        function relogio() {
+
+            tempo = new Date()
+
+            hora = tempo.getHours()
+            minito = tempo.getMinutes()
+            segundo = tempo.getSeconds()
+
+            mostraRelogio = document.getElementById("clock")
+            mostraRelogio.innerHTML = zeroEsquerda(hora) + ":" + zeroEsquerda(minito) + ":" + zeroEsquerda(segundo)
+        }
+
+        function zeroEsquerda(hms) {
+            if (hms < 10) {
+                hms = "0" + hms
+            }
+            return hms
+        }
+
+        setInterval(relogio, 1000)
+
+
+
+
+    </script>
+
+
+
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.10.3/dist/sweetalert2.all.min.js
+"></script>
+
+</body>
+
+</html>
