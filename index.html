@@ -75,7 +75,7 @@
         </div>
     </nav>
     <div class="container main" id="main1">
-        <div id="clock"><!--Aqui aparece o relógio--></div>
+        <!-- <div id="clock">Aqui aparece o relógio</div> -->
         <p>Para ordenar é necessario haver um tipo de separador entre os seriais,
             como nas opções a direita.
         </p>
@@ -95,7 +95,7 @@
         <div class="row">
             <div class="col-md-8">
                 <textarea name="separa" id="separa" cols="90" rows="10"
-                    placeholder="Suporta no máximo 500 ítens"></textarea>
+                    placeholder="Suporta no máximo 1000 ítens" autofocus></textarea>
                 <hr>
                 <button class="btn" id="buttonColo" onclick="separar()">Separar</button>
                 <button class="btn" id="buttonColor1" onclick="limpar()">Limpar</button>
@@ -138,8 +138,6 @@
         <div class="show">
             <div class="autoria">
                 <p class="paragrfo__autoria">
-
-
                     Este sistema foi desenvolvido por Anderson Fernandes - andersantfer@gmail.com
                 </p>
             </div>
@@ -193,11 +191,11 @@
                 var tamanho = arr.length - 1
 
 
-                if (tamanho > 500) {
+                if (tamanho > 1000) {
                     Swal.fire({
                         icon: "error",
                         title: "Erro",
-                        text: "Não insira mais que 500 seriais!",
+                        text: "Não insira mais que 1000 seriais!",
 
                     });
                     // alert("Não insira mais que 500 seriais")
@@ -276,9 +274,11 @@
 
 
         function limpar() {
+            
             var mostrar = document.getElementById("show");
             var separando = document.getElementById("separa").value = "";
-            mostrar.innerHTML = ``
+            mostrar.innerHTML = ``;
+            document.getElementById("separa").focus();
         }
         function relogio() {
 
