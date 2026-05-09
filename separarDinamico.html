@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link href="
+        https://cdn.jsdelivr.net/npm/sweetalert2@11.10.3/dist/sweetalert2.min.css
+        " rel="stylesheet">
+
+
+
+  <title>Split Racer – Separador por Tamanho</title>
+  <style>
+    :root{
+      --asfalto:#1a1a1f;
+      --linha:#f7f7f7;
+      --neon-pink:#ff2e88;
+      --neon-green:#30f39b;
+      --neon-cyan:#29c8ff;
+      --neon-yellow:#ffe44d;
+      --neon-orange:#ff8f2f;
+      --box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+      --borda: #ffffff22;
+      --accent:#00c2ff;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#fff;
+      /* Asfalto com marcas de pista */
+      background:
+        radial-gradient(1200px 800px at 70% -20%, #094d77 0%, #062a3a 45%, #041a25 65%, #03131a 100%),
+        repeating-linear-gradient(90deg, var(--asfalto), var(--asfalto) 46px, #202028 46px, #202028 92px);
+    }
+
+    /* Pista principal */
+    .track {
+      max-width: 980px;
+      margin: 40px auto;
+      border-radius: 20px;
+      position: relative;
+      padding: 24px;
+      box-shadow: var(--box-shadow);
+      background:
+        linear-gradient(180deg, #0f1116cc, #0f1116cc),
+        repeating-linear-gradient(90deg, transparent, transparent 44px, #ffffff22 44px, #ffffff22 46px);
+      border: 2px solid var(--borda);
+      overflow: hidden;
+    }
+
+    /* Laterais com zebra de pista (quadriculado) */
+    .track::before, .track::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      width:22px;
+      background:
+        conic-gradient(from 45deg, #fff 0 25%, #000 0 50%, #fff 0 75%, #000 0 100%) 0 0 / 16px 16px;
+      opacity:0.9;
+    }
+    .track::before{left:0; filter:drop-shadow(0 0 6px #ffffff88)}
+    .track::after{right:0; filter:drop-shadow(0 0 6px #ffffff88)}
+
+    header{
+      display:flex; align-items:center; gap:12px; margin-bottom:18px;
+    }
+    .logo-flag{
+      width:32px; height:32px;
+      background:
+        conic-gradient(from 45deg, #fff 0 25%, #000 0 50%, #fff 0 75%, #000 0 100%) 0 0 / 12px 12px;
+      border-radius:6px;
+      box-shadow: 0 4px 12px #0008;
+    }
+    h1{margin:0; font-size:1.35rem; letter-spacing:0.3px}
+    .subtitle{margin:2px 0 0; opacity:0.9; font-size:0.95rem}
+
+    /* Painel de controles */
+    .controls{
+      display:grid;
+      grid-template-columns: 1fr 160px;
+      gap:14px;
+      margin-top:16px;
+      background:#11161ecc;
+      border:1px solid #ffffff22;
+      padding:14px;
+      border-radius:14px;
+    }
+    .controls .row{
+      display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap;
+    }
+    label{font-weight:600; font-size:0.95rem}
+
+    input[type="text"], input[type="number"]{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1.5px solid #2b2f38;
+      background:#0f1319;
+      color:#eaf7ff;
+      outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease;
+    }
+    input[type="number"]{max-width:160px}
+    input:focus{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px #00c2ff33;
+    }
+
+    .checkbox{
+      display:flex; align-items:center; gap:10px; padding:6px 10px; border-radius:10px;
+      background:#0c1015; border:1px solid #ffffff1a;
+      color:#cfe9ff;
+    }
+    .checkbox input{transform:translateY(1px)}
+
+    /* Botões */
+    .actions{
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .btn{
+      appearance:none; border:none; cursor:pointer;
+      padding:12px 16px; border-radius:10px; font-weight:800; letter-spacing:0.4px;
+      box-shadow: 0 8px 16px rgba(0,0,0,.35);
+      transition:transform .05s ease, filter .15s ease, box-shadow .15s ease;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:linear-gradient(180deg, var(--neon-cyan), #0fe); color:#061318}
+    .btn-clear{background:linear-gradient(180deg, #ff5b5b, #ff2e2e); color:#fff}
+
+    /* Grid das pistas (empilhamento vertical) */
+    .lanes{
+      margin-top:20px;
+      display:flex; flex-direction:column; gap:14px;
+    }
+
+    /* Cada pista */
+    .lane{
+      position:relative;
+      padding:16px 18px 16px 64px;
+      background:
+        linear-gradient(180deg, #12161d, #0f141b),
+        repeating-linear-gradient(90deg, transparent, transparent 42px, #ffffff22 42px, #ffffff22 44px);
+      border:1px solid #ffffff22;
+      border-radius:12px;
+      box-shadow: var(--box-shadow);
+      min-height:64px;
+      overflow:hidden;
+    }
+
+    /* Marcadores de volta/lado esquerdo */
+    .lane::before{
+      content:attr(data-lap);
+      position:absolute; left:16px; top:50%; transform:translateY(-50%);
+      width:36px; height:36px; border-radius:50%;
+      display:grid; place-items:center; font-weight:900;
+      color:#061318;
+      background: radial-gradient(120% 120% at 30% 30%, var(--neon-yellow), #ffd54d);
+      box-shadow: 0 0 0 3px #0006, 0 6px 16px #ffd54d55;
+    }
+
+    /* Carro/box de chunk */
+    .chunk{
+      display:inline-block;
+      margin:6px 8px 6px 0;
+      padding:10px 12px;
+      border-radius:10px;
+      font-weight:700;
+      color:#0a0a12;
+      background: linear-gradient(135deg, var(--neon-pink), var(--neon-orange));
+      box-shadow: 0 8px 18px rgba(255, 68, 0, .35);
+      border: 2px solid #ffffff55;
+      white-space:pre-wrap;
+    }
+    .chunk.alt{
+      background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+      box-shadow: 0 8px 18px rgba(0, 255, 204, .35);
+    }
+
+    /* Rodapé de status */
+    .status{
+      margin-top:16px; font-size:0.95rem; opacity:0.9;
+    }
+
+    /* Linha de chegada */
+    .finish-line{
+      margin-top:22px; height:16px; border-radius:10px;
+      background:
+        conic-gradient(from 45deg, #fff 0 25%, #000 0 50%, #fff 0 75%, #000 0 100%) 0 0 / 16px 16px;
+      box-shadow: 0 6px 14px #0008;
+    }
+
+    @media (max-width:640px){
+      .controls{grid-template-columns:1fr}
+      .lane{padding-left:56px}
+      .lane::before{width:32px;height:32px;font-size:.9rem}
+    }
+  </style>
+</head>
+<body>
+     <nav class="navbar bg-body-tertiary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Separação de seriais</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Separar seriais</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Separar seriais de máquinas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="serialChip.html">Separar seriais de chip</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="downloads.html">Planilhas utilitárias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="volumes.html">Calcula volumes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="serialIngenico.html">Serial Ingenico</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cores.html">Config. cores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="separarDinamico.html">Separação dinamica</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+  <div class="track" role="main" aria-label="Split Racer – Separador por tamanho">
+    <header>
+      <div class="logo-flag" aria-hidden="true"></div>
+      <div>
+        <h1>Split Racer</h1>
+        <p class="subtitle">Separe sua cadeia de caracteres em blocos do tamanho escolhido e empilhe como pistas de corrida.</p>
+      </div>
+    </header>
+
+    <section class="controls" aria-label="Controles">
+      <div class="row">
+        <div style="flex:1">
+          <label for="texto">Cadeia de caracteres</label>
+          <input id="texto" type="text" placeholder="Digite seu texto aqui..." />
+        </div>
+        <div>
+          <label for="tamanho">Tamanho do bloco</label>
+          <input id="tamanho" type="number" min="1" value="4" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="checkbox">
+          <input id="ignorar-espacos" type="checkbox" />
+          <label for="ignorar-espacos">Ignorar espaços</label>
+        </div>
+        <div class="checkbox">
+          <input id="remover-nao-letras" type="checkbox" />
+          <label for="remover-nao-letras">Remover não alfanumérico</label>
+        </div>
+        <div class="actions" style="margin-left:auto">
+          <button id="btn-processar" class="btn btn-primary">Separar</button>
+          <button id="btn-limpar" class="btn btn-clear">Limpar tela</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="lanes" id="lanes" aria-live="polite" aria-label="Pistas (resultados)">
+      <!-- As pistas (linhas) serão inseridas aqui via JS -->
+    </section>
+
+    <div class="finish-line" aria-hidden="true"></div>
+    <div class="status" id="status">Pronto para largar 🚦</div>
+  </div>
+
+  <script>
+    const inputTexto = document.getElementById('texto');
+    const inputTamanho = document.getElementById('tamanho');
+    const chkIgnorarEspacos = document.getElementById('ignorar-espacos');
+    const chkRemoverNao = document.getElementById('remover-nao-letras');
+    const btnProcessar = document.getElementById('btn-processar');
+    const btnLimpar = document.getElementById('btn-limpar');
+    const lanes = document.getElementById('lanes');
+    const status = document.getElementById('status');
+
+    function sanitize(text) {
+      let t = text;
+      if (chkIgnorarEspacos.checked) t = t.replace(/\s+/g, '');
+      if (chkRemoverNao.checked) t = t.replace(/[^a-zA-Z0-9À-ÿ]/g, '');
+      return t;
+    }
+
+    function splitIntoChunks(text, size){
+      const chunks = [];
+      for(let i=0; i<text.length; i+=size){
+        chunks.push(text.slice(i, i+size));
+      }
+      return chunks;
+    }
+
+    function renderLanes(chunks, size){
+      lanes.innerHTML = '';
+      if (chunks.length === 0){
+        status.textContent = 'Nada para mostrar. Insira um texto e escolha o tamanho.';
+        return;
+      }
+
+      // Empilhar verticalmente: 1 “pista” por chunk
+      chunks.forEach((chunk, idx) => {
+        const lane = document.createElement('div');
+        lane.className = 'lane';
+        lane.setAttribute('data-lap', (idx+1).toString());
+
+        // Alterna esquema vibrante
+        const car = document.createElement('span');
+        car.className = 'chunk' + (idx % 2 ? ' alt' : '');
+        car.textContent = chunk;
+
+        lane.appendChild(car);
+        lanes.appendChild(lane);
+      });
+
+      status.textContent = `Separado em ${chunks.length} bloco(s) de tamanho ${size}.`;
+    }
+
+    function process(){
+      const raw = inputTexto.value || '';
+      const size = parseInt(inputTamanho.value, 10);
+
+      if (!raw.trim()){
+        status.textContent = 'Digite um texto para separar.';
+        inputTexto.focus();
+        return;
+      }
+      if (!(size > 0)){
+        status.textContent = 'Informe um tamanho numérico maior que zero.';
+        inputTamanho.focus();
+        return;
+      }
+
+      const cleaned = sanitize(raw);
+      const chunks = splitIntoChunks(cleaned, size);
+      renderLanes(chunks, size);
+    }
+
+    function clearAll(){
+      inputTexto.value = '';
+      inputTamanho.value = 4;
+      chkIgnorarEspacos.checked = false;
+      chkRemoverNao.checked = false;
+      lanes.innerHTML = '';
+      status.textContent = 'Tela limpa. Pronto para largar 🚦';
+      inputTexto.focus();
+    }
+
+    btnProcessar.addEventListener('click', process);
+    btnLimpar.addEventListener('click', clearAll);
+
+    // Enter para processar
+    inputTexto.addEventListener('keydown', (e)=>{
+      if (e.key === 'Enter'){ e.preventDefault(); process(); }
+    });
+  </script>
+</body>
+</html>
