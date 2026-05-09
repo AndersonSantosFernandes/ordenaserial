@@ -92,6 +92,8 @@
     <input type="radio" name="selectBip" id="bipChip" checked>
     <label for="bipDx8000">Bipar DX8000</label>
     <input type="radio" name="selectBip" id="bipDx8000" >
+     <label for="bipP3">Bipar P3</label>
+    <input type="radio" name="selectBip" id="bipP3" >
     <br>
     <hr>
 
@@ -125,8 +127,9 @@
           var contar = 20
       }else if(selectBip[1].checked){
           var contar = 12
+      }else if(selectBip[2].checked){
+          var contar = 13
       }
-
       var seriais = document.getElementById("seriais");
       var show = document.getElementById("show");
       var cont = seriais.value;
